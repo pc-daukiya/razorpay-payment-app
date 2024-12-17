@@ -96,7 +96,6 @@
             }
 
             try {
-                // Step 1: Send the amount to the backend to create an order
                 const response = await fetch("/create-order", {
                     method: "POST",
                     headers: {
@@ -106,14 +105,13 @@
                 });
                 const order = await response.json();
 
-                // Step 2: Open Razorpay checkout with the order details
                 const options = {
-                    "key": "rzp_live_IHWpEC1oBXHxl4", // Replace with your Razorpay Key ID
-                    "amount": order.amount,       // Amount in paise
+                    "key": "rzp_live_IHWpEC1oBXHxl4", 
+                    "amount": order.amount,    
                     "currency": "INR",
                     "name": "Kesar Restaurant",
                     "description": "Dynamic Payment",
-                    "order_id": order.id,         // Razorpay Order ID
+                    "order_id": order.id,         
                     "handler": function (response) {
                         alert("Payment successful! Payment ID: " + response.razorpay_payment_id);
                         console.log(response);
