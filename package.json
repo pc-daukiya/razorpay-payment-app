@@ -1,0 +1,13 @@
+{
+  "name": "razorpay-payment-app",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "body-parser": "^1.19.0",
+    "razorpay": "^2.8.1"
+  }
+}
