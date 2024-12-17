@@ -5,21 +5,17 @@ const path = require('path');
 
 const app = express();
 
-// Middleware to parse JSON
 app.use(bodyParser.json());
 
-// Razorpay instance
 const razorpay = new Razorpay({
-    key_id: 'rzp_live_IHWpEC1oBXHxl4',        // Replace with your Razorpay Key ID
-    key_secret: '4xQs6iCFDOxQTRJqen6z8f3H'    // Replace with your Razorpay Key Secret
+    key_id: 'rzp_live_IHWpEC1oBXHxl4',        
+    key_secret: '4xQs6iCFDOxQTRJqen6z8f3H'    
 });
 
-// Serve the index.html file located at the root directory
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Route to create a Razorpay order
 app.post('/create-order', async (req, res) => {
     const { amount } = req.body;
 
@@ -28,7 +24,7 @@ app.post('/create-order', async (req, res) => {
     }
 
     const options = {
-        amount: amount * 100, // Amount in paise (multiply by 100)
+        amount: amount * 100, 
         currency: "INR",
         receipt: `receipt_${Date.now()}`
     };
@@ -42,7 +38,6 @@ app.post('/create-order', async (req, res) => {
     }
 });
 
-// Start the server
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
